@@ -1,0 +1,45 @@
+{
+    "Lua.diagnostics.globals": [
+        "lfs"
+    ],
+    "Lua.workspace.checkThirdParty": false,
+    "diagnostics.groupSeverity": {
+        "ambiguity": "Error",
+        "await": "Error",
+        "codestyle": "Error",
+        "duplicate": "Hint",
+        "global": "Error",
+        "luadoc": "Error",
+        "redefined": "Information",
+        "strict": "Error",
+        "strong": "Error",
+        "type-check": "Error",
+        "unbalanced": "Error",
+        "unused": "Hint"
+    },
+    "diagnostics.disable": [
+        "duplicate-doc-alias",
+        "duplicate-doc-field"
+    ],
+    "runtime.path": [
+        "src/?.lua",
+        "src/?/init.lua",
+        "lua_modules/share/lua/5.4/?.lua",
+        "lua_modules/share/lua/5.4/?/init.lua"
+    ],
+    "runtime.pathStrict": true,
+    "runtime.version": "Lua 5.4",
+    "workspace.ignoreDir": [
+        ".vscode",
+        ".luarocks",
+        "build",
+        "build/lua"
+    ],
+    "workspace.library": [
+        "lua_modules/lib/lua/5.4/",
+        "lua_modules/share/lua/5.4/",
+        "/Users/frityet/Library/Application Support/Code/User/globalStorage/sumneko.lua/addonManager/addons/yue/module/library",
+    ],
+    "diagnostics.libraryFiles": "Opened",
+    "workspace.useGitIgnore": false,
+}

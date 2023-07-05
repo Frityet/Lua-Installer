@@ -2,25 +2,19 @@
     "version": "0.2.0",
     "configurations": [
         {
-            // Use IntelliSense to find out which attributes exist for C# debugging
-            // Use hover for the description of the existing attributes
-            // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
-            "name": ".NET Core Launch (console)",
-            "type": "coreclr",
+            "type": "lua",
             "request": "launch",
-            "preLaunchTask": "build",
-            // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/bin/Debug/net7.0/Lua Installer.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}",
-            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+            "name": "Debug",
+            "program": "${workspaceFolder}/src/main.lua",
+            "path": "${workspaceFolder}/src/?.lua;${workspaceFolder}/src/?/init.lua;${workspaceFolder}/lua_modules/share/lua/5.4/?.lua;${workspaceFolder}/lua_modules/share/lua/5.4/?/init.lua",
+            "cpath": "${workspaceFolder}/lua_modules/lib/lua/5.4/?.so",
+            "env": {
+                "LUAROCKS_SYSCONFDIR": "/usr/local/etc/luarocks"
+            },
+            "luaVersion": "5.4",
+            "stopOnEntry": false,
+            "luaexe": "${workspaceFolder}/lua",
             "console": "integratedTerminal",
-            "stopAtEntry": false
-        },
-        {
-            "name": ".NET Core Attach",
-            "type": "coreclr",
-            "request": "attach"
         }
     ]
 }

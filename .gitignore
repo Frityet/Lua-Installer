@@ -1,3 +1,5 @@
-.idea/
-bin/
-obj
+/luarocks
+/lua
+/lua_modules
+/.luarocks
+/build
