@@ -54,6 +54,8 @@ copas.addthread(function ()
                 select:additem(tostring(v))
             end
 
+            select:additem("LuaJIT v2.1.0")
+
             return true
         end
 
