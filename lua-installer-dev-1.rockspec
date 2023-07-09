@@ -19,13 +19,16 @@ build = {
     },
 
     modules = {
-
+        ["InputField"] = "src/InputField.lua",
+        ["packages"] = "src/packages/init.lua",
+        ["packages.Lua"] = "src/packages/Lua.lua",
+        ["packages.Package"] = "src/packages/Package.lua"
     }
-}
-build_dependencies = {
-    "combustion",
 }
 dependencies = {
     "lua ~> 5.4",
-    "luayue-bin"
+    "luayue-bin",
+    "luasec",
+    "copas-async",
+    "penlight"
 }

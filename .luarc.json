@@ -22,6 +22,9 @@
         "duplicate-doc-field"
     ],
     "runtime.path": [
+        "types/?.lua",
+        "types/?/init.lua",
+
         "src/?.lua",
         "src/?/init.lua",
         "lua_modules/share/lua/5.4/?.lua",
@@ -36,10 +39,14 @@
         "build/lua"
     ],
     "workspace.library": [
+        "types/",
         "lua_modules/lib/lua/5.4/",
         "lua_modules/share/lua/5.4/",
         "/Users/frityet/Library/Application Support/Code/User/globalStorage/sumneko.lua/addonManager/addons/yue/module/library",
     ],
     "diagnostics.libraryFiles": "Opened",
     "workspace.useGitIgnore": false,
+    "runtime.special": {
+        "lanes.require" : "require"
+    }
 }

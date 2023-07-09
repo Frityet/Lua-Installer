@@ -14,7 +14,7 @@
             "luaVersion": "5.4",
             "stopOnEntry": false,
             "luaexe": "${workspaceFolder}/lua",
-            "console": "integratedTerminal",
+            "console": "internalConsole",
         }
     ]
 }
