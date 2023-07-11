@@ -1,4 +1,4 @@
-package("curlpp")
+package("curl-pp")
 do
     set_urls("https://github.com/jpbarrette/curlpp/archive/refs/tags/v$(version).zip")
 

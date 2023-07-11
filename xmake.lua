@@ -1,9 +1,9 @@
-includes("pacakges.lua")
+includes("packages.lua")
 
 --Config:
 local packages = {
     "qt5widgets",
-    "curlpp",
+    "curl-pp",
 }
 
 local sanitizers = { "address", "leak", "undefined" }
