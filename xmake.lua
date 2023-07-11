@@ -2,7 +2,6 @@
 local packages = {
     "qt5widgets",
     "curlpp",
-    "fmt"
 }
 
 local sanitizers = { "address", "leak", "undefined" }
@@ -25,8 +24,6 @@ local ldflags = {
     debug = {},
     regular = {}
 }
-
-if not is_plat("windows") then cxxflags.regular[#cxxflags.regular + 1] = "-Werror" end
 
 set_languages("cxxlatest")
 
