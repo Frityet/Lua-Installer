@@ -4,8 +4,8 @@
 #include <string>
 #include <cstring>
 
-struct Version {
-    int major, minor, patch;
+struct alignas(8) Version {
+    uint16_t major, minor, patch;
 
     bool operator<(const Version &other) const
     {
@@ -37,14 +37,28 @@ struct Version {
         return *this > other || *this == other;
     }
 
-    static constexpr Version from_string(const std::string &str)
+    std::string to_string() const
+    {
+        static char buf[32];
+        snprintf(buf, 32, "%d.%d.%d", major, minor, patch);
+        return buf;
+    }
+
+    std::string to_url(const std::string &url_fmt)
+    {
+        static char buf[URL_MAX_LENGTH];
+        snprintf(buf, URL_MAX_LENGTH, url_fmt.c_str(), major, minor, patch);
+        return buf;
+    }
+
+    static Version from_string(const std::string &str)
     {
         Version version;
-        std::sscanf(str.c_str(), "%d.%d.%d", &version.major, &version.minor, &version.patch);
+        int major, minor, patch;
+        std::sscanf(str.c_str(), "%d.%d.%d", &major, &minor, &patch);
+        version.major = major;
+        version.minor = minor;
+        version.patch = patch;
         return version;
     }
 };
-
-//Literal
-constexpr Version operator""_v(const char *str, size_t len)
-{ return Version::from_string(std::string(str, len)); }
