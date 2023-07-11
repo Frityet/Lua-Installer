@@ -41,7 +41,7 @@ do
     add_files("src/**.cpp")
     add_headerfiles("src/**.hpp")
 
-    add_includedirs("src/", "src/include", "/usr/local/include")
+    add_includedirs("src/", "src/include")
 
     add_cxxflags(cxxflags.regular)
     add_ldflags(ldflags.regular)

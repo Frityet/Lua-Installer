@@ -1,3 +1,4 @@
+#include <filesystem>
 #include <qcoreapplication.h>
 #include <qapplication.h>
 #include <QtWidgets/QWizard>
@@ -5,7 +6,7 @@
 #include "pages/Lua.hpp"
 #include "pages/Luarocks.hpp"
 
-int main(int argc, char *argv[static argc])
+int main(int argc, char *argv[])
 {
     auto app = QApplication(argc, argv);
 
