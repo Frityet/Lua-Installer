@@ -45,6 +45,8 @@ do
     add_cxxflags(cxxflags.regular)
     add_ldflags(ldflags.regular)
 
+    add_defines("_CRT_SECURE_NO_WARNINGS")
+
     if is_mode "debug" then
         add_cxxflags(cxxflags.debug)
         add_ldflags(ldflags.debug)

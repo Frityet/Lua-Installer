@@ -56,9 +56,9 @@ struct alignas(8) Version {
         Version version;
         int major, minor, patch;
         std::sscanf(str.c_str(), "%d.%d.%d", &major, &minor, &patch);
-        version.major = major;
-        version.minor = minor;
-        version.patch = patch;
+        version.major = static_cast<uint16_t>(major);
+        version.minor = static_cast<uint16_t>(minor);
+        version.patch = static_cast<uint16_t>(patch);
         return version;
     }
 };
