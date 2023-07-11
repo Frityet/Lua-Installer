@@ -13,7 +13,7 @@ local cxxflags = {
         "-Wno-unused-function", "-Wno-unused-parameter", "-Wno-unused-variable"
     },
     regular = {
-        "-Wall", "-Wextra", "-Werror",
+        "-Wall", "-Wextra",
         "-Wno-deprecated-enum-enum-conversion",
         "-fcoroutines",
         "-frtti",
@@ -25,6 +25,8 @@ local ldflags = {
     debug = {},
     regular = {}
 }
+
+if not is_plat("windows") then cxxflags.regular[#cxxflags.regular + 1] = "-Werror" end
 
 set_languages("cxxlatest")
 
