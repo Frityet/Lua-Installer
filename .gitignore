@@ -1,5 +1,5 @@
-/luarocks
-/lua
-/lua_modules
-/.luarocks
-/build
+.cache/
+.xmake/
+build/
+
+.DS_Store

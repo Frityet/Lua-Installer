@@ -1,20 +1,17 @@
 {
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "lua",
+            "type": "lldb",
             "request": "launch",
             "name": "Debug",
-            "program": "${workspaceFolder}/src/main.lua",
-            "path": "${workspaceFolder}/src/?.lua;${workspaceFolder}/src/?/init.lua;${workspaceFolder}/lua_modules/share/lua/5.4/?.lua;${workspaceFolder}/lua_modules/share/lua/5.4/?/init.lua",
-            "cpath": "${workspaceFolder}/lua_modules/lib/lua/5.4/?.so",
-            "env": {
-                "LUAROCKS_SYSCONFDIR": "/usr/local/etc/luarocks"
-            },
-            "luaVersion": "5.4",
-            "stopOnEntry": false,
-            "luaexe": "${workspaceFolder}/lua",
-            "console": "internalConsole",
+            "program": "${workspaceFolder}/build/macosx/x86_64/debug/LuaInstaller",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "Build"
         }
     ]
 }
