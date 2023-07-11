@@ -21,4 +21,5 @@ struct HTTPResponse {
 
 std::future<HTTPResponse> request_async(const std::string &url, HTTPMethod method);
 
-std::future<std::map<std::string, HTTPResponse>> request_many_async(curlpp::Multi *client, const std::vector<std::string> &urls, HTTPMethod method);
+std::future<std::map<std::string, HTTPResponse>>
+request_many_async(curlpp::Multi *client, const std::vector<std::string> &urls, HTTPMethod method);

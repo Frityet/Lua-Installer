@@ -16,7 +16,7 @@ Lua::Lua(QWidget *parent) : QWizardPage(parent)
     //On picker change, set the `package.version` to the selected version
     connect(_picker, QOverload<int>::of(&QComboBox::currentIndexChanged), [this](int index){
         Version v;
-        sscanf(_picker->itemText(index).toStdString().c_str(), package.version.url_format.c_str(), &v.major, &v.minor, &v.patch);
+        sscanf(_picker->itemText(index).toStdString().c_str(), package.url_format.c_str(), &v.major, &v.minor, &v.patch);
         package.version = v;
     });
 
