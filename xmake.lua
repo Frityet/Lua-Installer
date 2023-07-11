@@ -1,3 +1,5 @@
+includes("pacakges.lua")
+
 --Config:
 local packages = {
     "qt5widgets",
@@ -12,7 +14,7 @@ local cxxflags = {
         "-Wno-unused-function", "-Wno-unused-parameter", "-Wno-unused-variable"
     },
     regular = {
-        "-Wall", "-Wextra", "-Werror",
+        "-Wall", "-Wextra",
         "-Wno-deprecated-enum-enum-conversion",
         "-fcoroutines",
         "-frtti",
