@@ -6,16 +6,6 @@
 
 struct Version {
     int major, minor, patch;
-    std::string url_format;
-
-    std::string url() const
-    {
-        static char urlbuf[URL_MAX_LENGTH];
-        snprintf(urlbuf, URL_MAX_LENGTH, url_format.c_str(), major, minor, patch);
-        return urlbuf;
-    }
-
-    std::future<std::map<std::string, HTTPResponse>> find_all_versions(curlpp::Multi *client, Version min, Version max) const;
 
     bool operator<(const Version &other) const
     {
