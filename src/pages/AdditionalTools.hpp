@@ -3,6 +3,7 @@
 #include <QtWidgets/QWizardPage>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QCheckBox>
 #include <QTimer>
 #include "packages/Package.hpp"
 #include "utilities.hpp"
@@ -16,7 +17,9 @@ namespace pages
         // Q_OBJECT
 
     private:
-
+        QCheckBox *Make;
+        QCheckBox *Mingw;
+        QCheckBox *LLVM;
         curlpp::Multi _http;
         QTimer *_timer;
         QComboBox *_picker;
@@ -27,6 +30,8 @@ namespace pages
         ~AdditionalTools() override = default;
 
         void initializePage() override;
+            private:
+        void check_future();
     };
 
 }

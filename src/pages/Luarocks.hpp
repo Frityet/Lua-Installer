@@ -4,7 +4,6 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QLabel>
 #include <QTimer>
-
 #include "utilities.hpp"
 #include "packages/Luarocks.hpp"
 
