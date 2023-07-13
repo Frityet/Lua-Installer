@@ -3,7 +3,7 @@
 #include <future>
 #include <initializer_list>
 #include <map>
-
+#include <vector>
 #include <curlpp/Multi.hpp>
 
 enum class HTTPMethod {

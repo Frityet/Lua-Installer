@@ -35,6 +35,7 @@ add_requires(packages)
 
 target("LuaInstaller")
 do
+    add_links("curl")
     add_rules("qt.widgetapp")
     add_packages(packages)
 

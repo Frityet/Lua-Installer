@@ -24,16 +24,6 @@ Luarocks::Luarocks(QWidget *parent) : QWizardPage(parent)
 
     _loading = new QLabel("Loading versions...");
     _loading->setAlignment(Qt::AlignCenter);
-
-    // _versions = _package.version.find_all_versions(&_http, Version {
-    //     .major = 3,
-    //     .minor = 0,
-    //     .patch = 0,
-    // }, Version {
-    //     .major = 4,
-    //     .minor = 10,
-    //     .patch = 10,
-    // });
 }
 
 void Luarocks::initializePage()

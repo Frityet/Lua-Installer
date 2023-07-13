@@ -5,6 +5,7 @@
 
 #include "pages/Lua.hpp"
 #include "pages/Luarocks.hpp"
+#include "pages/AdditionalTools.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -14,8 +15,10 @@ int main(int argc, char *argv[])
 
     auto lua_page = pages::Lua();
     auto luarocks_page = pages::Luarocks();
+    auto AdditionalTools_page = pages::AdditionalTools();
     wizard.addPage(&lua_page);
     wizard.addPage(&luarocks_page);
+    wizard.addPage(&AdditionalTools_page);
 
     wizard.setFixedSize(640, 480);
     wizard.setWindowTitle("Lua Installer");
