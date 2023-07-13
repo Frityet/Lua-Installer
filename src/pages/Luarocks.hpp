@@ -15,7 +15,6 @@ namespace pages
 
     private:
         curlpp::Multi _http;
-        std::future<std::map<std::string, HTTPResponse>> _versions;
         QTimer *_timer;
         QComboBox *_picker;
         QLabel *_loading;

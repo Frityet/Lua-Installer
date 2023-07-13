@@ -5,6 +5,7 @@
 #include <QtWidgets/QLabel>
 #include <QTimer>
 
+#include "packages/Package.hpp"
 #include "utilities.hpp"
 
 namespace pages
@@ -14,7 +15,6 @@ namespace pages
         // Q_OBJECT
 
     private:
-
 
     public:
         explicit AdditionalTools(QWidget *parent = nullptr);

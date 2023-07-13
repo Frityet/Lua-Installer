@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
     wizard.addPage(&lua_page);
     wizard.addPage(&luarocks_page);
 
+    wizard.setFixedSize(640, 480);
     wizard.setWindowTitle("Lua Installer");
     wizard.setWizardStyle(QWizard::ModernStyle);
     wizard.setOption(QWizard::NoBackButtonOnStartPage);

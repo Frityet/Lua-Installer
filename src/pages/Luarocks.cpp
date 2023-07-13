@@ -34,17 +34,6 @@ Luarocks::Luarocks(QWidget *parent) : QWizardPage(parent)
     //     .minor = 10,
     //     .patch = 10,
     // });
-    _versions = std::async([](){
-        return std::map<std::string, HTTPResponse> {
-            {
-                "3.9.2",
-                {
-                    .data = "",
-                    .code = 200,
-                }
-            },
-        };
-    });
 }
 
 void Luarocks::initializePage()
@@ -61,14 +50,12 @@ void Luarocks::initializePage()
 
 void Luarocks::check_future()
 {
-    if (_versions.wait_for(std::chrono::seconds(0)) == std::future_status::ready) {
-        auto versions = _versions.get();
+    if (package.finished_fetching_versions()) {
+        auto versions = package.versions();
 
-        for (auto const &[version, response] : versions) {
-            if (response.code == 200) {
-                _picker->addItem(QString::fromStdString(version));
-            }
-        }
+        for (Version version : versions)
+            _picker->addItem(QString::fromStdString(version.to_string()));
+
 
         _loading->hide();
         _picker->setEnabled(true);
