@@ -1,7 +1,9 @@
 .cache/
 .xmake/
 build/
-outputFolder/
+
+curlpp.lib/
+out/
 .DS_Store
 
 compile_commands.json
