@@ -1,5 +1,3 @@
-includes("packages.lua")
-
 --Config:
 local packages = {
     "qt5widgets",
@@ -13,12 +11,20 @@ local cxxflags = {
         "-Wno-unused-function", "-Wno-unused-parameter", "-Wno-unused-variable"
     },
     regular = {
-        "-Wall", "-Wextra",
         "-Wno-deprecated-enum-enum-conversion",
         "-fcoroutines",
         "-frtti",
     }
 }
+
+
+if is_plat("windows") then
+    cxxflags.regular[#cxxflags.regular+1] = "-FS"
+else
+    cxxflags.regular[#cxxflags.regular+1] = "-Wall"
+    cxxflags.regular[#cxxflags.regular+1] = "-Wextra"
+    cxxflags.regular[#cxxflags.regular+1] = "-Werror"
+end
 
 local ldflags = {
     release = {},
@@ -35,7 +41,6 @@ add_requires("vcpkg::curlpp")
 
 target("LuaInstaller")
 do
-    add_links("curl")
     add_rules("qt.widgetapp")
     add_packages(packages)
     add_packages("curlpp")
