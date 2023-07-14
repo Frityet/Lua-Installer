@@ -13,12 +13,20 @@ local cxxflags = {
         "-Wno-unused-function", "-Wno-unused-parameter", "-Wno-unused-variable"
     },
     regular = {
-        "-Wall", "-Wextra",
         "-Wno-deprecated-enum-enum-conversion",
         "-fcoroutines",
         "-frtti",
     }
 }
+
+
+if is_plat("windows") then
+    cxxflags.regular[#cxxflags.regular+1] = "-FS"
+else
+    cxxflags.regular[#cxxflags.regular+1] = "-Wall"
+    cxxflags.regular[#cxxflags.regular+1] = "-Wextra"
+    cxxflags.regular[#cxxflags.regular+1] = "-Werror"
+end
 
 local ldflags = {
     release = {},
