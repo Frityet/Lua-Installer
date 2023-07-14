@@ -1,8 +1,8 @@
-includes("packages.lua")
 
---Config:
+
 local packages = {
     "qt5widgets",
+    "vcpkg::curlpp",
 }
 
 local sanitizers = { "address", "leak", "undefined" }
@@ -31,23 +31,18 @@ set_languages("cxxlatest")
 add_rules("mode.debug", "mode.release")
 
 add_requires(packages)
-add_requires("vcpkg::curlpp")
 
 target("LuaInstaller")
 do
-    add_links("curl")
     add_rules("qt.widgetapp")
+    set_kind("binary")
     add_packages(packages)
-    add_packages("curlpp")
-
     add_files("src/**.cpp")
     add_headerfiles("src/**.hpp")
-
     add_includedirs("src/", "src/include")
-
     add_cxxflags(cxxflags.regular)
     add_ldflags(ldflags.regular)
-
+    add_frameworks("QtWidgets")
     add_defines("_CRT_SECURE_NO_WARNINGS")
 
     if is_mode "debug" then

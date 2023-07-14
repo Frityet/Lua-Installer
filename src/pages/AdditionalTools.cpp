@@ -1,16 +1,11 @@
 #include "AdditionalTools.hpp"
 #include "utilities.hpp"
-#include "choices.hpp"
 #include <iostream>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QCheckBox>
 #include <QList>
-install choices;
 using namespace pages;
 
-void onInteraction(){
-    std::cout<<"nice! \n";
-}
 AdditionalTools::AdditionalTools(QWidget *parent) : QWizardPage(parent)
 {
     Make = new QCheckBox("Make");
@@ -18,23 +13,17 @@ AdditionalTools::AdditionalTools(QWidget *parent) : QWizardPage(parent)
     LLVM = new QCheckBox("LLVM");
 connect(Make, &QCheckBox::stateChanged, [this](int state) {
     if (state == Qt::Unchecked) {
-        choices.make = false;
     } else if (state == Qt::Checked) {
-                choices.make = true;
     }
 });
 connect(Mingw, &QCheckBox::stateChanged, [this](int state) {
     if (state == Qt::Unchecked) {
-        choices.mingw = false;
     } else if (state == Qt::Checked) {
-        choices.mingw = true;
     }
 });
 connect(LLVM, &QCheckBox::stateChanged, [this](int state) {
     if (state == Qt::Unchecked) {
-        choices.llvm = false;
     } else if (state == Qt::Checked) {
-        choices.llvm = true;
     }
 });
 }
