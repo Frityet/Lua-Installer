@@ -1,7 +1,7 @@
 .cache/
 .xmake/
 build/
-
+outputFolder/
 .DS_Store
 
 compile_commands.json
