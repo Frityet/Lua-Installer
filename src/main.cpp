@@ -15,12 +15,13 @@ int main(int argc, char *argv[])
 
     auto lua_page = pages::Lua();
     auto luarocks_page = pages::Luarocks();
-    auto AdditionalTools_page = pages::AdditionalTools();
+    bool use_mingw, use_make, use_llvm;
+    auto AdditionalTools_page = pages::AdditionalTools(&use_make, &use_mingw, &use_llvm);
     wizard.addPage(&lua_page);
     wizard.addPage(&luarocks_page);
     wizard.addPage(&AdditionalTools_page);
 
-    wizard.setFixedSize(640, 480);
+    wizard.setFixedSize(QSize { 640, 480 });
     wizard.setWindowTitle("Lua Installer");
     wizard.setWizardStyle(QWizard::ModernStyle);
     wizard.setOption(QWizard::NoBackButtonOnStartPage);

@@ -17,16 +17,12 @@ namespace pages
         // Q_OBJECT
 
     private:
-        QCheckBox *Make;
-        QCheckBox *Mingw;
-        QCheckBox *LLVM;
-        curlpp::Multi _http;
-        QTimer *_timer;
-        QComboBox *_picker;
-        QLabel *_loading;
+        QCheckBox *_make_checkbox;
+        QCheckBox *_mingw_checkbox;
+        QCheckBox *_llvm_checkbox;
     public:
     packages::MinGW package;
-        explicit AdditionalTools(QWidget *parent = nullptr);
+        explicit AdditionalTools(bool *make, bool *mingw, bool *llvm, QWidget *parent = nullptr);
         ~AdditionalTools() override = default;
 
         void initializePage() override;
