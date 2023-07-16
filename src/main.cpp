@@ -1,7 +1,6 @@
 #include <filesystem>
-#include <qcoreapplication.h>
-#include <qapplication.h>
-#include <QtWidgets/QWizard>
+
+#include "Qt.hpp"
 
 #include "pages/Lua.hpp"
 #include "pages/Luarocks.hpp"

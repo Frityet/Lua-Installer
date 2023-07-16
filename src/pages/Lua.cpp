@@ -2,8 +2,6 @@
 #include "Version.hpp"
 #include "utilities.hpp"
 
-#include <QtWidgets/QVBoxLayout>
-
 using namespace pages;
 
 Lua::Lua(QWidget *parent) : QWizardPage(parent)

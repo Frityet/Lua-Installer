@@ -1,9 +1,7 @@
 #include "AdditionalTools.hpp"
 #include "utilities.hpp"
 #include <iostream>
-#include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QCheckBox>
-#include <QList>
+
 using namespace pages;
 
 AdditionalTools::AdditionalTools(bool *make, bool *mingw, bool *llvm, QWidget *parent) : QWizardPage(parent)

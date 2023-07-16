@@ -1,8 +1,6 @@
 #include "Luarocks.hpp"
 #include "utilities.hpp"
 
-#include <QtWidgets/QVBoxLayout>
-
 using namespace pages;
 
 Luarocks::Luarocks(QWidget *parent) : QWizardPage(parent)

@@ -75,15 +75,15 @@ add_requires(packages, { system = false, configs = { shared = true } })
 
 target "LuaInstaller" do
     add_rules("qt.widgetapp")
-    add_frameworks("QtGui", "QtCore")
+    add_frameworks("QtGui", "QtCore", "QtWidgets")
     set_kind("binary")
     add_packages(packages)
     add_files("src/**.cpp")
     add_headerfiles("src/**.hpp")
-    add_includedirs("src/", "src/include")
+    add_includedirs("src/")
+    set_pcxxheader("src/Qt.hpp")
     add_cxxflags(cxxflags.regular)
     add_ldflags(ldflags.regular)
-    add_frameworks("QtWidgets")
     add_defines("_CRT_SECURE_NO_WARNINGS")
 
     if is_mode "debug" then

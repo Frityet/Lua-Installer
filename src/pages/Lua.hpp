@@ -1,9 +1,6 @@
 #pragma once
 
-#include <QtWidgets/QWizardPage>
-#include <QtWidgets/QComboBox>
-#include <QtWidgets/QLabel>
-#include <QTimer>
+#include "Qt.hpp"
 
 #include "utilities.hpp"
 #include "packages/Lua.hpp"

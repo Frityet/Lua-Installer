@@ -1,10 +1,6 @@
 #pragma once
 
-#include <QtWidgets/QWizardPage>
-#include <QtWidgets/QComboBox>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QCheckBox>
-#include <QTimer>
+#include "Qt.hpp"
 #include "packages/Package.hpp"
 #include "utilities.hpp"
 #include "packages/MinGW.hpp"
