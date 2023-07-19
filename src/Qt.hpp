@@ -14,5 +14,5 @@
 #include <QWizard>
 #include <QWizardPage>
 #include <QVBoxLayout>
-
+#include <QProgressBar>
 #endif
