@@ -2,8 +2,6 @@
 
 #include "Qt.hpp"
 
-#include "utilities.hpp"
-
 namespace pages
 {
     class Progress : public QWizardPage {

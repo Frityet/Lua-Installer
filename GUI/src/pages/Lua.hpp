@@ -2,27 +2,27 @@
 
 #include "Qt.hpp"
 
-#include "utilities.hpp"
-#include "packages/Luarocks.hpp"
+#include "packages/Lua.hpp"
 
 namespace pages
 {
-    class Luarocks : public QWizardPage {
+    class Lua : public QWizardPage {
         // Q_OBJECT
 
     private:
-        curlpp::Multi _http;
         QTimer *_timer;
         QComboBox *_picker;
         QLabel *_loading;
 
     public:
-        packages::Luarocks package;
+        packages::Lua package;
 
-        explicit Luarocks(QWidget *parent = nullptr);
-        ~Luarocks() override = default;
+        explicit Lua(QWidget *parent = nullptr);
+        ~Lua() override = default;
 
         void initializePage() override;
+
+        Version selected_version() const;
 
     private:
         void check_future();

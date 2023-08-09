@@ -1,6 +1,6 @@
 #include "Progress.hpp"
-#include "utilities.hpp"
 #include "Qt.hpp"
+
 using namespace pages;
 
 Progress::Progress(QWidget *parent) : QWizardPage(parent)

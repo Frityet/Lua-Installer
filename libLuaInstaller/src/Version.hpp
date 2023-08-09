@@ -1,8 +1,9 @@
 #pragma once
 
-#include "utilities.hpp"
 #include <string>
 #include <cstring>
+
+#include "utilities.hpp"
 
 struct alignas(8) Version {
     uint16_t major, minor, patch;

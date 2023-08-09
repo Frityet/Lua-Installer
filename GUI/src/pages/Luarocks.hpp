@@ -2,12 +2,11 @@
 
 #include "Qt.hpp"
 
-#include "utilities.hpp"
-#include "packages/Lua.hpp"
+#include "packages/Luarocks.hpp"
 
 namespace pages
 {
-    class Lua : public QWizardPage {
+    class Luarocks : public QWizardPage {
         // Q_OBJECT
 
     private:
@@ -17,14 +16,12 @@ namespace pages
         QLabel *_loading;
 
     public:
-        packages::Lua package;
+        packages::Luarocks package;
 
-        explicit Lua(QWidget *parent = nullptr);
-        ~Lua() override = default;
+        explicit Luarocks(QWidget *parent = nullptr);
+        ~Luarocks() override = default;
 
         void initializePage() override;
-
-        Version selected_version() const;
 
     private:
         void check_future();

@@ -1,13 +1,10 @@
 #include "Lua.hpp"
 #include "Version.hpp"
-#include "utilities.hpp"
 
 using namespace pages;
 
 Lua::Lua(QWidget *parent) : QWizardPage(parent)
 {
-    _http = curlpp::Multi();
-
     _picker = new QComboBox(this);
     _picker->setEditable(false);
     _picker->setEnabled(false);
