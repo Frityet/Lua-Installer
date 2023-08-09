@@ -1,1 +1,1 @@
-includes("GUI", "libLuaInstaller")
+includes("libLuaInstaller", "GUI", "CLI")
