@@ -1,25 +1,25 @@
 local Version = require "Package/Version"
 package.cpath = "lua_modules/lib/lua/5.1/?.so;" .. package.cpath
 
-local os = jit.os
-
 local uv = require("uv")
 local timer = require("timer")
 ---@type yue.gui
 local gui = require("yue.gui")
 
 local l_error = error
-function _G.error(msg, num)
+function error(msg, num)
+    uv.stop()
+
     local msgbox = gui.MessageBox.create()
     msgbox:settype("error")
     msgbox:addbutton("Quit", 0)
     msgbox:setdefaultresponse(0)
-    if os ~= "OSX" then msgbox:settitle("Error") end
+    if jit.os ~= "OSX" then msgbox:settitle("Error") end
     msgbox:settext("An error has occured")
     msgbox:setinformativetext(debug.traceback(msg))
     msgbox:run()
 
-    l_error(msg, num)
+    return l_error(msg, num)
 end
 
 ---@type { enqueue: fun(callback: (fun(): boolean), interval: number?), clock: fun(): number }
@@ -32,10 +32,12 @@ local window = gui.Window.create {
     transparent = false,
     showtrafficlights = true,
 }
+window:settitle "Lua Installer"
 
 function window:onclose()
     uv.stop()
     gui.MessageLoop.quit()
+    os.exit(0)
 end
 
 
@@ -76,16 +78,18 @@ container:addchildview(next_button)
 function next_button:onclick()
     local next_page_idx, next_page = next(pages, selected_page_idx)
     if next_page then
+        selected_page:on_cleanup()
         selected_page_idx, selected_page = next_page_idx, next_page
 
         local view = page_container:childat(1)
         view:setvisible(false)
         page_container:removechildview(view)
         page_container:addchildview(selected_page.ui())
+        next_button:setvisible(false)
 
-        local show_next = next(pages, selected_page_idx) ~= nil
-        if show_next then
-            next_button:setvisible(false)
+        next_page_idx, next_page = next(pages, selected_page_idx)
+        if next_page then
+            next_button:setvisible(true)
         end
     else
         window:close()
@@ -108,7 +112,7 @@ timer.setTimeout(0, function()
     utilities.enqueue(function()
         uv.run("nowait")
         return true
-    end)
+    end, 0.5)
 
     gui.MessageLoop.run()
 end)

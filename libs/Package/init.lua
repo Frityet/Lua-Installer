@@ -40,7 +40,11 @@ end
 ---@param max VersionTuple
 ---@param on_request fun(url: url_parsed)?
 ---@param on_get fun(ver: Package.Version?, checked: integer, total: integer)?
+---@return luvit.http.ClientRequest[]
 function Package:fetch_versions(min, max, on_request, on_get)
+    ---@type luvit.http.ClientRequest[]
+    local reqs = {}
+
     self.versions = {}
     --Total = number of versions to check
     local checked, total = 0, 0
@@ -68,10 +72,10 @@ function Package:fetch_versions(min, max, on_request, on_get)
                         self.versions[#self.versions+1] = ver
                     end
 
-                    req:setTimeout(10000, function ()
+                    req:setTimeout(1000, function ()
                         checked = checked + 1
                         if on_get then on_get(nil, checked, total) end
-                        -- req:destroy()
+                        req:destroy()
                     end)
                 end)
 
@@ -86,9 +90,13 @@ function Package:fetch_versions(min, max, on_request, on_get)
 
                 req:flushHeaders()
                 req:done()
+
+                reqs[#reqs+1] = req
             end
         end
     end
+
+    return reqs
 end
 
 ---@param to string

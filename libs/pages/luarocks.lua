@@ -6,6 +6,9 @@ local common = require("pages/common")
 
 local pkg = Luarocks:create()
 
+---@type luvit.http.ClientRequest[]
+local reqs
+
 local function ui()
     local container = gui.Container.create()
 
@@ -28,10 +31,7 @@ local function ui()
         ["margin-top"] = 10,
     }
 
-    pkg:fetch_versions (function (url)
-        print("Checking "..url.href)
-    end,
-        function(version, checked, total)
+    reqs = pkg:fetch_versions (nil, function(version, checked, total)
             local percent = checked / total * 100
             fetching_text:settext(string.format("Fetching versions... %d/%d (%.2f%%)", checked, total, percent))
             fetching_prgb:setvalue(percent)
@@ -43,15 +43,12 @@ local function ui()
 
             picker:additem(tostring(version))
 
-            ---@type string[]
-            local sel = picker:getitems()
-
             ---@type Package.Version[]
             local vers = {}
 
-            for i, v in ipairs(sel) do
+            for _, v in ipairs(picker:getitems() --[[@as string[] ]]) do
                 if v == "None" then goto next end
-                vers[i] = Version:from_string(v)
+                vers[#vers+1] = Version:from_string(v)
                 ::next::
             end
 
@@ -79,20 +76,28 @@ local function ui()
     return container
 end
 
+---@param to string
 ---@param progress nu.ProgressBar
-local function on_download(progress)
+local function download(to, progress)
 
 end
 
 ---@param to string
-local function on_install(to)
+local function install(to)
 
+end
+
+local function cleanup()
+    for _, req in ipairs(reqs) do
+        req:destroy()
+    end
 end
 
 ---@type Page
 return {
     name = "Luarocks",
     ui = ui,
-    on_download = on_download,
-    on_install = on_install,
+    on_download = download,
+    on_install = install,
+    on_cleanup = cleanup
 }

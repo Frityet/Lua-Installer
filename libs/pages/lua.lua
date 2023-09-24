@@ -3,13 +3,15 @@ local gui = require("yue.gui")
 
 local Version = require("Package/Version")
 local Lua = require("Package/Lua")
-local common = require("pages/common")
 
 local pkg = Lua:create()
 
 ---@type Package.Version?
 local selected_lua_version = nil
 local lua_is_jit = false
+
+---@type luvit.http.ClientRequest[]
+local reqs
 
 local function ui()
     local lua_container = gui.Container.create()
@@ -29,7 +31,7 @@ local function ui()
         height = 25,
         ["margin-top"] = 10,
     }
-    pkg:fetch_versions(nil,
+    reqs = pkg:fetch_versions(nil,
         function(version, checked, total)
             local percent = checked / total * 100
             fetching_text:settext(string.format("Fetching versions... %d/%d (%.2f%%)", checked, total, percent))
@@ -38,8 +40,6 @@ local function ui()
                 fetching_text:setvisible(false);
                 fetching_pgbar:setvisible(false);
             end
-
-            if not version then return end
 
             picker:additem(tostring(version))
 
@@ -54,7 +54,6 @@ local function ui()
                 ::next::
             end
 
-            --Sort, newest first (greatest major), then greatest minor, then greatest build
             table.sort(vers, function(a, b) return a > b end)
 
             picker:clear()
@@ -94,19 +93,24 @@ local function ui()
 end
 
 ---@param progress nu.ProgressBar
-local function on_download(progress)
+local function download(to, progress)
     if not selected_lua_version then return end
 end
 
 ---@param to string
-local function on_install(to)
+local function install(to)
     if not selected_lua_version then return end
+end
+
+local function cleanup()
+    for _, req in ipairs(reqs) do req:destroy() end
 end
 
 ---@type Page
 return {
     name = "Lua",
     ui = ui,
-    on_download = on_download,
-    on_install = on_install
+    on_download = download,
+    on_install = install,
+    on_cleanup = cleanup,
 }
