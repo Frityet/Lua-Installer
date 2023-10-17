@@ -4,24 +4,25 @@ local json = require("json")
 local Version = require("Package/Version")
 local MinGWVersion = require("Package/MinGW/Version")
 
-local MINGW_GITHUB_API_ENDPOINT = "https://api.github.com/repos/niXman/mingw-builds-binaries/releases"
-local LLVM_GITHUB_API_ENDPOINT = "https://api.github.com/repos/mstorsjo/llvm-mingw/releases"
-local W64DEVKIT_GITHUB_API_ENDPOINT = "https://api.github.com/repos/skeeto/w64devkit/releases"
-
 ---@alias MinGW.Type
 ---| '"MinGW"'
 ---| '"LLVM"'
 ---| '"w64devkit"'
 
 ---@class MinGW : Package
+---@field versions Package.MinGW.Version[]
+---@field type MinGW.Type
 local MinGW = {
-    ---@type Package.MinGW.Version
-    versions = {},
-
     ---@type MinGW.Type
     type = "MinGW",
     ---@type MinGW.Type[]
     TYPES = { "MinGW", "LLVM", "w64devkit" },
+
+    API_ENDPOINTS = {
+        MinGW = "https://api.github.com/repos/niXman/mingw-builds-binaries/releases",
+        LLVM = "https://api.github.com/repos/mstorsjo/llvm-mingw/releases",
+        w64devkit = "https://api.github.com/repos/skeeto/w64devkit/releases"
+    },
 
     ---Depends on `type`
     url_format = ""
@@ -42,7 +43,7 @@ local fetch = {
     MinGW = function (self, on_get)
         self.versions = {}
 
-        local req = https.get(MINGW_GITHUB_API_ENDPOINT, function (res)
+        local req = https.get(MinGW.API_ENDPOINTS.MinGW, function (res)
             local data = ""
             res:on("error", error)
             res:on("data", function (chunk) data = data.. chunk end)
@@ -72,7 +73,7 @@ local fetch = {
     LLVM = function (self, on_get)
         self.versions = {}
 
-        local req = https.get(LLVM_GITHUB_API_ENDPOINT, function (res)
+        local req = https.get(MinGW.API_ENDPOINTS.LLVM, function (res)
             local data = ""
             res:on("error", error)
             res:on("data", function (chunk) data = data.. chunk end)
@@ -111,7 +112,7 @@ local fetch = {
     w64devkit = function(self, on_get)
         self.versions = {}
 
-        local req = https.get(W64DEVKIT_GITHUB_API_ENDPOINT, function (res)
+        local req = https.get(MinGW.API_ENDPOINTS.w64devkit, function (res)
             local data = ""
             res:on("error", error)
             res:on("data", function (chunk) data = data.. chunk end)
@@ -125,7 +126,7 @@ local fetch = {
                     if version then
                         table.insert(self.versions, version)
                         if on_get then on_get(version, #self.versions, #releases) end
-                    else print("Invalid version: "..tag_name) end
+                    else io.stderr:write("Invalid version: "..tag_name) end
 
                     ::next::
                 end

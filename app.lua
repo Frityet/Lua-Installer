@@ -1,13 +1,15 @@
 local Version = require "Package/Version"
-package.cpath = "lua_modules/lib/lua/5.1/?.so;" .. package.cpath
+package.path = "lua_modules/share/lua/5.1/?.lua;lua_modules/share/lua/5.1/?/init.lua;"..package.path
+package.cpath = "lua_modules/lib/lua/5.1/?.so;"..package.cpath
 
 local uv = require("uv")
 local timer = require("timer")
----@type yue.gui
+
+---@type nu
 local gui = require("yue.gui")
 
 local l_error = error
-function error(msg, num)
+function _G.error(msg, num)
     uv.stop()
 
     local msgbox = gui.MessageBox.create()
@@ -21,9 +23,6 @@ function error(msg, num)
 
     return l_error(msg, num)
 end
-
----@type { enqueue: fun(callback: (fun(): boolean), interval: number?), clock: fun(): number }
-local utilities = require("utilities")
 
 local pages = require("pages")
 
@@ -109,10 +108,14 @@ window:activate()
 timer.setTimeout(0, function()
     uv.stop()
 
-    utilities.enqueue(function()
+    -- utilities.enqueue(function()
+    --     uv.run("nowait")
+    --     return true
+    -- end, 0.5)
+
+    gui.MessageLoop.settimer(50, function ()
         uv.run("nowait")
         return true
-    end, 0.5)
-
+    end)
     gui.MessageLoop.run()
 end)

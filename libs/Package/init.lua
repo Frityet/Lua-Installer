@@ -11,14 +11,12 @@ local pretty = require("pretty-print")
 
 
 ---@class Package
+---@field name string
+---@field versions Package.Version[]
+---@field url_format string
+---@field file_path string
 ---@field install fun(to: string)
-local Package = {
-    name = "";
-    ---@type Package.Version[]
-    versions = {};
-    url_format = "";
-    file_path = ""
-}
+local Package = {}
 Package.__index = Package
 Package.__name = "Package"
 

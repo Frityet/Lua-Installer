@@ -12,7 +12,8 @@ description = {
 }
 dependencies = {
     "lua ~> 5.1",
-    "luayue 0.14.0-bin",
+    "luayue 0.14.1-bin",
+    "htmlparser",
 }
 build_dependencies = {
     "luarocks-build-extended"
@@ -20,6 +21,5 @@ build_dependencies = {
 build = {
     type = "extended",
     modules = {
-        ["utilities"] = "utilities.cpp"
     }
 }
