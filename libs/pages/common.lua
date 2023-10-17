@@ -1,4 +1,4 @@
----@type yue.gui
+---@type nu
 local gui = require("yue.gui")
 
 local export = {}

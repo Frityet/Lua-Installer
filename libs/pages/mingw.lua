@@ -1,4 +1,4 @@
----@type yue.gui
+---@type nu
 local gui = require("yue.gui")
 local Version = require("Package/MinGW/Version")
 local MinGW = require("Package/MinGW")
